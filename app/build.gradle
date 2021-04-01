@@ -1,15 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    signingConfigs {
+        system_key {
+            storeFile file('E:\\AndroidStudioWork\\Launcher_T20\\release.keystore')
+            storePassword '565405388'
+            keyPassword '565405388'
+            keyAlias 'Luancher_T20'
+        }
+    }
+    compileSdkVersion 29
     buildToolsVersion '29.0.3'
     defaultConfig {
         applicationId "com.bixin.launcher_t20"
         minSdkVersion 23
         //noinspection OldTargetApi
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
-        versionName '1.0.210226.2'
+        versionName '1.0.210401.1'
     }
     buildTypes {
         release {
@@ -42,12 +50,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
-    implementation 'com.android.support:design:27.1.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.2.1'
     //第三方
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.4'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'

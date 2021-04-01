@@ -7,6 +7,7 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea
 .DS_Store
 /build
 /captures
@@ -18,7 +19,7 @@
 *.aar
 *.ap_
 *.aab
-
+*.zip
 # Files for the ART/Dalvik VM
 *.dex
 
@@ -98,5 +99,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
-
-libs/
+.idea
+.idea/shelf/
+app/release
