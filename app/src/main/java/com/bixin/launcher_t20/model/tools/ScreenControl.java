@@ -12,9 +12,9 @@ import android.util.Log;
 import com.bixin.launcher_t20.activity.LauncherApp;
 import com.bixin.launcher_t20.model.receiver.ScreenOffAdminReceiver;
 
+import static android.content.ContentValues.TAG;
 import static android.content.Context.DEVICE_POLICY_SERVICE;
 import static android.content.Context.POWER_SERVICE;
-import static android.support.constraint.Constraints.TAG;
 
 /**
  * @author Altair

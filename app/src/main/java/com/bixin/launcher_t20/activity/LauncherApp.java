@@ -13,7 +13,6 @@ import com.bixin.launcher_t20.model.bean.AppInfo;
 import com.bixin.launcher_t20.model.tools.CustomValue;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LauncherApp extends Application {

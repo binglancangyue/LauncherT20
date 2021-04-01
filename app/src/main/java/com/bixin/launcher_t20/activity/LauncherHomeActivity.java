@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
-import android.support.constraint.ConstraintLayout;
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -419,9 +419,7 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void unRegisterContentObserver() {
-        if (mDVRContentObserver != null) {
-            getContentResolver().unregisterContentObserver(mDVRContentObserver);
-        }
+        getContentResolver().unregisterContentObserver(mDVRContentObserver);
     }
 
     @Override
