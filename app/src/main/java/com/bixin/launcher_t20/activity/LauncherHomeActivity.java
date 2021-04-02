@@ -208,9 +208,8 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
                 getWeather();
                 break;
             default: // 应用
-                activityTools.jumpToActivity(this, AppListActivity.class);
-//                Intent intent=new Intent(Settings.ACTION_DREAM_SETTINGS);
-//                startActivity(intent);
+                Intent intent = new Intent(this, AppListActivity.class);
+                startActivity(intent);
                 break;
         }
     }
