@@ -40,11 +40,13 @@ public class StartActivityTool {
      */
     public void jumpByAction(String action) {
         Intent intent = new Intent(action);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }
 
     public void jumpToActivity(Activity activity, Class aClass) {
         Intent intent = new Intent(activity, aClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }
 

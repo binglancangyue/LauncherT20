@@ -17,7 +17,7 @@ android {
         //noinspection OldTargetApi
         targetSdkVersion 29
         versionCode 1
-        versionName '1.0.210401.1'
+        versionName '1.0.210402.1'
     }
     buildTypes {
         release {
