@@ -55,5 +55,5 @@ public class CustomValue {
     public final static boolean NOT_CLOUD_SERVICE = false;
 
     public static final boolean IS_START_TEST_APP = true;//是否打开工厂测试程序
-
+    public static final boolean IS_SUPPORT_LONG_CLICK = true;//app 页面是否支持长按卸载
 }

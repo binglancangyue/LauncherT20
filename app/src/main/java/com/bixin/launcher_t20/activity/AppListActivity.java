@@ -2,13 +2,16 @@ package com.bixin.launcher_t20.activity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.View;
 
@@ -94,11 +97,6 @@ public class AppListActivity extends BaseActivity implements OnRecyclerViewItemL
         recyclerView.setLayoutManager(manager);
     }
 
-
-//    private void initData() {
-//        getAppList();
-//    }
-
     private void initAppInfo() {
         mDisposable.add(Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
@@ -140,10 +138,16 @@ public class AppListActivity extends BaseActivity implements OnRecyclerViewItemL
 
     @Override
     public void onItemLongClickListener(int position, String packageName) {
-//        Log.d(TAG, "onItemLongClickListener packageName: " + packageName);
-//        Uri uri = Uri.fromParts("package", packageName, null);
-//        Intent intent = new Intent(Intent.ACTION_DELETE, uri);
-//        startActivity(intent);
+        Log.d(TAG, "onItemLongClickListener packageName: " + packageName);
+        Uri uri = Uri.fromParts("package", packageName, null);
+        Intent intent = new Intent(Intent.ACTION_DELETE, uri);
+        startActivityForResult(intent, 909);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult requestCode:" + requestCode + " resultCode:" + resultCode);
     }
 
     @Override
@@ -171,6 +175,7 @@ public class AppListActivity extends BaseActivity implements OnRecyclerViewItemL
     @Override
     protected void onStop() {
         super.onStop();
+        openDefaultMap = 0;
         Log.d(TAG, "onStop: ");
     }
 
