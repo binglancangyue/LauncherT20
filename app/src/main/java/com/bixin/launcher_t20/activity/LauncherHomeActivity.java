@@ -1,6 +1,5 @@
 package com.bixin.launcher_t20.activity;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -11,14 +10,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bixin.launcher_t20.R;
@@ -28,20 +28,12 @@ import com.bixin.launcher_t20.model.receiver.WeatherReceiver;
 import com.bixin.launcher_t20.model.tools.CallBackManagement;
 import com.bixin.launcher_t20.model.tools.CustomValue;
 import com.bixin.launcher_t20.model.tools.StartActivityTool;
-import com.trello.rxlifecycle2.android.ActivityEvent;
 
 import java.lang.ref.WeakReference;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class LauncherHomeActivity extends BaseActivity implements View.OnClickListener, View.OnLongClickListener, OnLocationListener {
     private static final String TAG = "HomeActivity";
-    private LauncherApp myApplication;
     public InnerHandler mHandler;
     private StartActivityTool activityTools;
     private WeatherReceiver mWeatherReceiver;
@@ -58,12 +50,13 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getFileData();
         registerDVRContentObserver();
         if (!CustomValue.IS_ENGLISH) {
-            mHandler.sendEmptyMessageDelayed(2, 4000);
             mHandler.sendEmptyMessageDelayed(3, 6000);
             mHandler.sendEmptyMessageDelayed(6, 8000);
+        }
+        if (!CustomValue.NOT_DVR) {
+            mHandler.sendEmptyMessageDelayed(2, 4000);
         }
         if (CustomValue.IS_START_TEST_APP) {
             mHandler.sendEmptyMessageDelayed(7, 12000);
@@ -77,7 +70,6 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void init() {
-        myApplication = (LauncherApp) getApplication();
         mHandler = new InnerHandler(this);
         activityTools = new StartActivityTool();
         CallBackManagement.getInstance().setOnLocationListener(this);
@@ -321,49 +313,12 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
         return flag;
     }
 
-    private void initAppInfo() {
-        mDisposable.add(Observable.create(new ObservableOnSubscribe<Boolean>() {
-            @Override
-            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                myApplication.initAppList();
-//                TXZConfigManager.getInstance().initialize(mContext, HomeActivity.this);
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(aBoolean -> {
-
-                }));
-    }
-
-    @SuppressLint("NewApi")
-    private void getFileData() {
-        getWindow().getDecorView().post(() -> mHandler.post(() -> {
-//            mScreenControl = new ScreenControl();
-//            mScreenControl.init();
-//            mScreenControl.checkAndTurnOnDeviceManager(this);
-
-//            RequestPermissionsTool requestPermissionsTools = new RequestPermissionsTool();
-//            requestPermissionsTools.requestPermissions(HomeActivity.this,
-//                    new String[]{KILL_BACKGROUND_PROCESSES});
-        }));
-    }
-
     private void setNavAPP() {
         Settings.Global.putInt(getContentResolver(), CustomValue.OPEN_SET_DEFAULT_MAP, 1);
         activityTools.jumpToActivity(this, AppListActivity.class);
     }
 
     private void startDVR() {
-/*        Intent intent = new Intent();
-        String packageName = "com.bx.carDVR";
-        String className = "com.bx.carDVR.DVRService";
-        intent.setComponent(new ComponentName(packageName, className));
-        try {
-            mContext.startService(intent);
-        } catch (Exception e) {
-            Log.e(TAG, "startDVR: " + e.getMessage());
-        }*/
         Intent launchIntent = mContext.getPackageManager()
                 .getLaunchIntentForPackage(CustomValue.PACKAGE_NAME_DVR);
         if (launchIntent == null) {
@@ -400,7 +355,6 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
             ivRecordState.setVisibility(View.GONE);
         }
     }
-
 
     private final ContentObserver mDVRContentObserver = new ContentObserver(null) {
         @Override
@@ -444,7 +398,6 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
             mHandler = null;
         }
         unRegisterContentObserver();
-        myApplication = null;
         activityTools = null;
     }
 }
