@@ -34,12 +34,6 @@ public class CustomValue {
     public final static String PACKAGE_NAME_RCX_DVR = "com.mapgoo.media.dvrx";
     public final static String PACKAGE_NAME_E_CAR = "com.ecar.assistantnew";
 
-    public final static String ACTION_TXZ_RECV = "com.txznet.adapter.recv";
-    public final static String ACTION_TXZ_SEND = "com.txznet.adapter.send";
-    public static final String ACTION_START_PROCESS = "android.system.action.START_PROCESS";
-    public final static String ACTION_OPEN_TXZ_VIEW = "com.bixin.launcher_t20.txz.open";
-    public final static String ACTION_QUICK_SETTINGS_VIEW = "com.bixin.launcher_t20.txz.settings";
-    public final static String ACTION_TXZ_INIT = "com.bixin.launcher_t20.txz.init";
     public final static String ACTION_GET_WEATHER = "com.bixin.speechrecognitiontool.action_get_weather";
     public final static String ACTION_UPDATE_WEATHER = "com.bixin.speechrecognitiontool.action_update_weather";
     public static final String ACTION_GAODE_SEND = "AUTONAVI_STANDARD_BROADCAST_SEND";

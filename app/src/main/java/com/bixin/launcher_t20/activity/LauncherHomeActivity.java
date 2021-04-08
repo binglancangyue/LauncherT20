@@ -1,5 +1,6 @@
 package com.bixin.launcher_t20.activity;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -33,7 +34,6 @@ import java.lang.ref.WeakReference;
 
 
 public class LauncherHomeActivity extends BaseActivity implements View.OnClickListener, View.OnLongClickListener, OnLocationListener {
-    private static final String TAG = "HomeActivity";
     public InnerHandler mHandler;
     private StartActivityTool activityTools;
     private WeatherReceiver mWeatherReceiver;
@@ -133,6 +133,7 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
         registerReceiver(mWeatherReceiver, filter);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -249,7 +250,7 @@ public class LauncherHomeActivity extends BaseActivity implements View.OnClickLi
 
 
     public static class InnerHandler extends Handler {
-        private LauncherHomeActivity activity;
+        private final LauncherHomeActivity activity;
 
         private InnerHandler(LauncherHomeActivity activity) {
             WeakReference<LauncherHomeActivity> activityWeakReference = new WeakReference<>(activity);

@@ -4,11 +4,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.trello.rxlifecycle2.components.RxActivity;
 
@@ -17,6 +18,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public abstract class BaseActivity extends RxActivity {
     protected CompositeDisposable mDisposable;
     protected Context mContext;
+    public final String TAG = getClass().getSimpleName();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override

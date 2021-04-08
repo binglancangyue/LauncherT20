@@ -40,8 +40,6 @@ import io.reactivex.schedulers.Schedulers;
  * @description: AppList页面
  */
 public class AppListActivity extends BaseActivity implements OnRecyclerViewItemListener, OnAppUpdateListener {
-    private final static String TAG = "AppListActivity";
-    private LauncherApp myApplication;
     private ArrayList<AppInfo> appInfoArrayList = new ArrayList<>();
     private StartActivityTool mActivityTools;
     private RecyclerGridViewAdapter mRecyclerGridViewAdapter;
@@ -77,8 +75,6 @@ public class AppListActivity extends BaseActivity implements OnRecyclerViewItemL
     @Override
     public void init() {
         mUpdateAppReceiver = new APPReceiver();
-        myApplication = (LauncherApp) getApplication();
-//        mActivityTools = new StartActivityTool(mContext);
         mActivityTools = new StartActivityTool();
         CallBackManagement.getInstance().setOnAppUpdateListener(this);
         registerAppReceiver();
@@ -120,7 +116,7 @@ public class AppListActivity extends BaseActivity implements OnRecyclerViewItemL
 
     public void getAppList(ObservableEmitter<Boolean> emitter) {
         appInfoArrayList.clear();
-        appInfoArrayList = myApplication.getShowAppList();
+        appInfoArrayList = LauncherApp.getInstance().getShowAppList();
         emitter.onNext(true);
     }
 
